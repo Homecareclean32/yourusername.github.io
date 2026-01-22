@@ -1,4 +1,49 @@
-<script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Business Website</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #0A1F44;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav button {
+      background-color: #0A1F44;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      margin: 5px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    nav button:hover {
+      background-color: #071733;
+    }
+
+    section {
+      display: none;
+      padding: 20px;
+    }
+
+    section.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body><script>
   function showSection(id) {
     document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -29,3 +74,5 @@
       "sms:+12535619069?body=" + encodeURIComponent(textMessage);
   });
 </script>
+</body>
+</html>
