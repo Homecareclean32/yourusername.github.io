@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Business Website</title>
+  <title>Home Care Clean</title>
 
   <style>
     body {
@@ -15,6 +15,11 @@
       color: white;
       padding: 20px;
       text-align: center;
+    }
+
+    nav {
+      text-align: center;
+      margin: 15px 0;
     }
 
     nav button {
@@ -43,9 +48,56 @@
   </style>
 </head>
 
-<body><script>
+<body>
+
+<header>
+  <h1>Home Care Clean</h1>
+  <p>Cleaning • Construction • Roofing • Painting</p>
+</header>
+
+<nav>
+  <button onclick="showSection('services')">Services</button>
+  <button onclick="showSection('booking')">Book Estimate</button>
+  <button onclick="textUs()">Text Us</button>
+</nav>
+
+<section id="services" class="active">
+  <h2>Our Services</h2>
+  <ul>
+    <li>Cleaning</li>
+    <li>Construction</li>
+    <li>Roofing</li>
+    <li>Painting</li>
+    <li>Home Care Cleaning</li>
+  </ul>
+</section>
+
+<section id="booking">
+  <h2>Book an Estimate</h2>
+
+  <form id="bookingForm">
+    <input type="text" name="name" placeholder="Your Name" required><br><br>
+    <input type="text" name="phone" placeholder="Your Phone" required><br><br>
+    <input type="date" name="date" required><br><br>
+
+    <select name="service">
+      <option>Cleaning</option>
+      <option>Construction</option>
+      <option>Roofing</option>
+      <option>Painting</option>
+    </select><br><br>
+
+    <textarea name="message" placeholder="Message"></textarea><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<script>
   function showSection(id) {
-    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('section').forEach(sec =>
+      sec.classList.remove('active')
+    );
     document.getElementById(id).classList.add('active');
   }
 
@@ -56,23 +108,18 @@
   document.getElementById('bookingForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    const name = this.name.value;
-    const phone = this.phone.value;
-    const date = this.date.value;
-    const service = this.service.value;
-    const message = this.message.value;
-
-    const textMessage =
+    const text =
       "New Estimate Request:\n" +
-      "Name: " + name + "\n" +
-      "Phone: " + phone + "\n" +
-      "Date: " + date + "\n" +
-      "Service: " + service + "\n" +
-      "Message: " + message;
+      "Name: " + this.name.value + "\n" +
+      "Phone: " + this.phone.value + "\n" +
+      "Date: " + this.date.value + "\n" +
+      "Service: " + this.service.value + "\n" +
+      "Message: " + this.message.value;
 
     window.location.href =
-      "sms:+12535619069?body=" + encodeURIComponent(textMessage);
+      "sms:+12535619069?body=" + encodeURIComponent(text);
   });
 </script>
+
 </body>
 </html>
