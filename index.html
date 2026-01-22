@@ -1,125 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home Care Clean</title>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      text-align: center;
     }
 
     header {
-      background-color: #0A1F44;
+      background: #0a1f44;
       color: white;
+      padding: 50px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 38px;
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 20px;
+    }
+
+    .buttons a {
+      display: block;
+      width: 90%;
+      max-width: 420px;
+      margin: 16px auto;
       padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      text-align: center;
-      margin: 15px 0;
-    }
-
-    nav button {
-      background-color: #0A1F44;
+      background: #0a1f44;
       color: white;
-      border: none;
-      padding: 12px 16px;
-      margin: 5px;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    nav button:hover {
-      background-color: #071733;
+      text-decoration: none;
+      font-size: 20px;
+      border-radius: 10px;
     }
 
     section {
-      display: none;
-      padding: 20px;
+      background: white;
+      margin: 20px;
+      padding: 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      text-align: left;
     }
 
-    section.active {
-      display: block;
+    section h2 {
+      text-align: center;
+      color: #0a1f44;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      font-size: 18px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #0a1f44;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 18px;
+      margin-top: 18px;
+      font-size: 20px;
+    }
+
+    footer {
+      background: #0a1f44;
+      color: white;
+      padding: 30px 20px;
+      font-size: 16px;
+      margin-top: 30px;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Home Care Clean</h1>
-  <p>Cleaning • Construction • Roofing • Painting</p>
-</header>
+  <header>
+    <h1>Home Care Clean</h1>
+    <p>Cleaning • Construction • Roofing • Painting</p>
+  </header>
 
-<nav>
-  <button onclick="showSection('services')">Services</button>
-  <button onclick="showSection('booking')">Book Estimate</button>
-  <button onclick="textUs()">Text Us</button>
-</nav>
+  <div class="buttons">
+    <a href="sms:+12535619069">📩 Text Us</a>
+    <a href="tel:+12535619069">📞 Call Us</a>
+  </div>
 
-<section id="services" class="active">
-  <h2>Our Services</h2>
-  <ul>
-    <li>Cleaning</li>
-    <li>Construction</li>
-    <li>Roofing</li>
-    <li>Painting</li>
-    <li>Home Care Cleaning</li>
-  </ul>
-</section>
+  <section>
+    <h2>About Us</h2>
+    <p>
+      Home Care Clean is a family‑owned business dedicated to providing reliable,
+      high‑quality services for homes and properties. We focus on clear communication,
+      honest work, and customer satisfaction.
+    </p>
+  </section>
 
-<section id="booking">
-  <h2>Book an Estimate</h2>
+  <section>
+    <h2>Our Services</h2>
+    <ul>
+      <li>Residential & Commercial Cleaning</li>
+      <li>Construction Services</li>
+      <li>Roofing</li>
+      <li>Interior & Exterior Painting</li>
+      <li>Home Care Cleaning</li>
+    </ul>
+  </section>
 
-  <form id="bookingForm">
-    <input type="text" name="name" placeholder="Your Name" required><br><br>
-    <input type="text" name="phone" placeholder="Your Phone" required><br><br>
-    <input type="date" name="date" required><br><br>
+  <section>
+    <h2>Why Choose Us</h2>
+    <ul>
+      <li>Fast response & easy communication</li>
+      <li>Free estimates</li>
+      <li>Professional and dependable service</li>
+      <li>Locally owned & operated</li>
+    </ul>
+  </section>
 
-    <select name="service">
-      <option>Cleaning</option>
-      <option>Construction</option>
-      <option>Roofing</option>
-      <option>Painting</option>
-    </select><br><br>
+  <section>
+    <h2>Request an Estimate</h2>
 
-    <textarea name="message" placeholder="Message"></textarea><br><br>
+    <form onsubmit="sendEstimate(); return false;">
+      <label>Name</label>
+      <input type="text" id="name" required>
 
-    <button type="submit">Submit</button>
-  </form>
-</section>
+      <label>Service Needed</label>
+      <select id="service">
+        <option>Cleaning</option>
+        <option>Construction</option>
+        <option>Roofing</option>
+        <option>Painting</option>
+        <option>Home Care Cleaning</option>
+      </select>
 
-<script>
-  function showSection(id) {
-    document.querySelectorAll('section').forEach(sec =>
-      sec.classList.remove('active')
-    );
-    document.getElementById(id).classList.add('active');
-  }
+      <label>Preferred Date</label>
+      <input type="date" id="date">
 
-  function textUs() {
-    window.location.href = "sms:+12535619069";
-  }
+      <label>Message</label>
+      <textarea id="message" rows="4"></textarea>
 
-  document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+      <button type="submit">Send Estimate Request</button>
+    </form>
+  </section>
 
-    const text =
-      "New Estimate Request:\n" +
-      "Name: " + this.name.value + "\n" +
-      "Phone: " + this.phone.value + "\n" +
-      "Date: " + this.date.value + "\n" +
-      "Service: " + this.service.value + "\n" +
-      "Message: " + this.message.value;
+  <section>
+    <h2>Service Areas</h2>
+    <p>
+      Serving local and surrounding areas.  
+      Text or call us to confirm availability in your location.
+    </p>
+  </section>
 
-    window.location.href =
-      "sms:+12535619069?body=" + encodeURIComponent(text);
-  });
-</script>
+  <footer>
+    <p>📞 (253) 561‑9069</p>
+    <p>© Home Care Clean</p>
+  </footer>
+
+  <script>
+    function sendEstimate() {
+      const name = document.getElementById("name").value;
+      const service = document.getElementById("service").value;
+      const date = document.getElementById("date").value;
+      const message = document.getElementById("message").value;
+
+      const text =
+        `Estimate Request:%0A` +
+        `Name: ${name}%0A` +
+        `Service: ${service}%0A` +
+        `Date: ${date}%0A` +
+        `Message: ${message}`;
+
+      window.location.href = "sms:+12535619069?body=" + text;
+    }
+  </script>
 
 </body>
 </html>
